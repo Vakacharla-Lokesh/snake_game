@@ -5,8 +5,13 @@ class ScoreBoard(Turtle):
     def __init__(self):
         super().__init__()
         self.score = 0
-        with open("snake game\game_data.txt") as file:
-            self.highscore = int(file.read())
+        try:
+            with open("snake game\game_data.txt") as file:
+                self.highscore = int(file.read())
+        except FileNotFoundError:
+            file_create = open("snake game\game_data.txt", "a") 
+            file_create.write("0")
+            file_create.close()
         # self.highscore = 0
         self.penup()
         self.goto(0,270)
